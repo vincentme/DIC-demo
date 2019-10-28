@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os, time
 sys.path.insert(0, os.path.abspath('..'))
-from lib import dic
+from dic import dic
 floattype = dic.floattype
 
 image_folder = '../data/Sample13-tenile/'
@@ -49,7 +49,7 @@ else:
     result_graph, POI_graph_list = dic.bisection_search(reader, start_index, end_index, POIs, output_frame_list, lost_level = lost_level)
     t2 = time.time()
     print('calculation time {:.2f}s'.format(t2 - t1))
-    
+
 
     for frame_index in output_frame_list:
         plt.figure()

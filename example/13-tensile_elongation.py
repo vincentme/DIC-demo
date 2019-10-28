@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os, time
 sys.path.insert(0, os.path.abspath('..'))
-from lib import dic
+from dic import dic
 floattype = dic.floattype
 
 image_folder = '../data/Sample13-tensile/'
@@ -46,7 +46,7 @@ else:
     POIs = np.concatenate((POIs1, POIs2))
     plt.figure()
     dic.plot_img_points(reader[start_index], POIs, size = 1.2)
-
+    
     t1 = time.time()
     result_graph, POI_graph_list = dic.bisection_search(reader, start_index, end_index, POIs, output_frame_list, lost_level = lost_level)
     t2 = time.time()
@@ -61,6 +61,7 @@ else:
     plt.plot(output_frame_list, elongation)
     plt.title('elongation vs. frame index')
     plt.savefig('{}/elongation.png'.format(result_folder), pad_inches=0, bbox_inches = 'tight', dpi = 200)
-        
-    
+
+
+​    
 

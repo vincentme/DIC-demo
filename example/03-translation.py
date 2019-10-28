@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os, time
 sys.path.insert(0, os.path.abspath('..'))
-from lib import dic
+from dic import dic
 floattype = dic.floattype
 
 image_folder = '../data/Sample3-translation/'
@@ -55,7 +55,7 @@ else:
         r_error = (np.sum(error**2, 1))**0.5
         bias_list.append(np.mean(r_error))
         std_list.append(np.std(r_error))
-
+    
     plt.figure()
     plt.plot(output_frame_list, bias_list, label = 'bias')
     plt.plot(output_frame_list, std_list, label = 'std')

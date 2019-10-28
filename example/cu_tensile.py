@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os, time, pickle
 sys.path.insert(0, os.path.abspath('..'))
-from lib import dic
+from dic import dic
 floattype = dic.floattype
 
 video_file = '../data/cu_tensile/P1000570.MP4'

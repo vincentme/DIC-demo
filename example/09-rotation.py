@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys, os, time
 sys.path.insert(0, os.path.abspath('..'))
-from lib import dic
+from dic import dic
 floattype = dic.floattype
 
 image_folder = '../data/Sample9-rotation/'
@@ -43,7 +43,7 @@ else:
         dic.plot_img_points(reader[frame_index], result_graph.nodes[frame_index]['POIs'], size = 1.2)
         plt.title('frame index {}'.format(frame_index))
         plt.savefig('{}/frame_{:02d}.png'.format(result_folder, frame_index), pad_inches=0, bbox_inches = 'tight', dpi = 200)
-        
+
 
 
 
