@@ -1,5 +1,9 @@
 # Manual of DIC-demo
 
+[TOC]
+
+------
+
 DIC-demo contains the data , source code and analysis code for Digital Image Correlation (DIC) method. This document provides the essential information to use the package. 
 
 The features of this DIC algorithm includes:
