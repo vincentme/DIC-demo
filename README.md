@@ -180,7 +180,7 @@ If you find this package useful in your research, please consider cite following
 
 > Zhang, Yunlu, et al. "Bisection searching based reference frame update strategy for digital image correlation." *SN Applied Sciences* 1.6 (2019): 588. 
 
-## bibliography
+## Bibliography
 
 1. Pan, Bing, et al. "Two-dimensional digital image correlation for in-plane displacement and strain measurement: a review." Measurement science and technology 20.6 (2009): 062001.
 2. Pan, Bing, et al. "Two-dimensional digital image correlation for in-plane displacement and strain measurement: a review." Measurement science and technology 20.6 (2009): 062001.
