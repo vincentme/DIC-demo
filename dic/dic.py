@@ -12,7 +12,7 @@ if floattype == np.float32:
 elif floattype == np.float64:
     torch_dtype = torch.float64
 torch_dtype_long = torch.long
-from . import liteflow
+import liteflow
 import os, pickle, time, imageio, math, warnings, datetime, natsort
 import networkx as nx
 
@@ -733,6 +733,7 @@ def gene_random_subset_shift(subset_level, d = 0.2):
     return np.random.uniform(-d, d, size = subset_shift.shape).astype(floattype) + subset_shift
 
 def bisection_search(reader, start_index, end_index, POIs, output_frame_list = None, subset_level = 10, ZNSSD_limit = 0.4, subpixel_method = 'fagn', lost_level = 0.25):
+    # lost_level: if the frame step is larger than lost_level times the total frame range (end_index - start_index), then the determined lost POIs are not considered as lost. 
     lost_threshold = abs(end_index - start_index)*lost_level
     if start_index < end_index:
         direction = 'forward'
@@ -1247,7 +1248,7 @@ class video_loader(object):
         return self.reader.get_data(index)
 
 class image_folder_loader(object):
-    def __init__(self, image_folder, suffix, time_format = None):
+    def __init__(self, image_folder, suffix, time_format = None, rescale = None):
         self.suffix = str(suffix).lower()
         self.image_folder = image_folder
         self.img_files = [image for image in natsort.natsorted(os.listdir(self.image_folder)) if os.path.isfile(os.path.join(self.image_folder, image)) and image.endswith(suffix)]
@@ -1259,6 +1260,7 @@ class image_folder_loader(object):
             self.timestamp_list = [img_tiem.timestamp() for img_tiem in self.time_list]
             self.timestamp_list = np.array(self.timestamp_list)
             self.relative_timestamp_list = self.timestamp_list - self.timestamp_list[0]
+        self.rescale = rescale
     
     def __len__(self):
         return self.num_frame
@@ -1266,7 +1268,10 @@ class image_folder_loader(object):
     def __getitem__(self, index):
         filename = os.path.join(self.image_folder, self.img_files[index])
         if self.suffix == 'npy':
-            return np.load(filename)
+            if self.rescale:
+                return (np.load(filename) + 1.)/self.rescale + 1.
+            else:
+                return np.load(filename)
         elif self.suffix == 'jpg' or self.suffix == 'tiff' or self.suffix == 'tif':
             return imageio.imread(filename)
         elif self.suffix == 'save' or self.suffix == 'dic':

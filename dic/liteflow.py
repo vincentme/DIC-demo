@@ -1,7 +1,7 @@
 import torch
 import math, os
 import numpy as np
-from . import correlation
+import correlation
 
 #arguments_strModel = 'default' # 'kitti' 'sintel'
 arguments_strModel = 'sintel' # 'kitti' 'sintel'
